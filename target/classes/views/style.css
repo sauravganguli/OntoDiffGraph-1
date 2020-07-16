@@ -1,0 +1,41 @@
+.bordered {
+    -fx-background-insets: 0 0 0 0, 5;
+    -fx-background-color: blue, grey;
+}
+
+/* Borders */
+.border-right {
+    -fx-border-width: 0 2 0 0;
+    -fx-border-color: black;
+}
+.border-left {
+    -fx-border-width: 0 0 0 2;
+    -fx-border-color: black;
+}
+
+/* List Cells */
+.list-cell:selected,
+.list-cell:focused {
+    -fx-background: -fx-control-inner-background;
+    -fx-background-insets: 0 0 0 0, 3px;
+    -fx-background-color: black, -fx-background;
+    -fx-text-fill: black;
+}
+
+.element-added,
+.element-added:selected,
+.element-added:focused {
+    -fx-background: derive(#00ff00,70%);
+}
+
+.element-edit,
+.element-edit:selected,
+.element-edit:focused {
+    -fx-background: derive(#0000ff,70%);
+}
+.element-removed,
+.element-removed:selected,
+.element-removed:focused{
+    -fx-background: derive(#ff0000,70%);
+}
+/*  */
