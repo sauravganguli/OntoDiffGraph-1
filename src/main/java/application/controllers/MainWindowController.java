@@ -3,6 +3,8 @@ package application.controllers;
 import application.diff.DiffGroup;
 import application.diff.GroupDiffType;
 import application.diff.OntologyDiff;
+import application.github.Credentials;
+import application.github.GitHubRequest;
 import application.graph.GraphPane;
 import application.graph.functionality.PanFunctionality;
 import application.graph.functionality.VertexClickFunctionality;
@@ -180,16 +182,28 @@ public class MainWindowController {
         loadOntologyDiff(ontologyFile1, ontologyFile2);
     }
 
-    // Additional method to obtain OWL files from GitHub
-    @FXML
-    private void createDiffGitHub() {
+    // Validating input data and stiling them
+    private boolean isValid(TextField textField){
+        if (textField.getText().trim().isEmpty()) {
+            textField.getStyleClass().add(Vars.INPUT_ERROR_STYLE);
+            return false;
+        } else {
+            textField.getStyleClass().remove(Vars.INPUT_ERROR_STYLE);
+            return true;
+        }
+    }
+
+    // Input GitHub data dialog
+    private void dialogInputData(Credentials credentials){
         ButtonType confirm = ButtonType.OK;
         ButtonType cancel = ButtonType.CANCEL;
+        Button browse = new Button("Browse");
+
         Alert alert = new Alert(Alert.AlertType.NONE, "", confirm, cancel);
         final Button btOk = (Button) alert.getDialogPane().lookupButton(confirm);
-//        btOk.setDisable(true);
+        final Button btCl = (Button) alert.getDialogPane().lookupButton(cancel);
 
-        alert.setTitle("Ontology Difference by GitHub URLs");
+        alert.setTitle("GitHub file location");
         alert.setHeaderText(null);
 
         GridPane grid = new GridPane();
@@ -198,48 +212,82 @@ public class MainWindowController {
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.getStylesheets().add(getClass().getResource("/views/error.css").toExternalForm());
 
-        grid.add(new Label("GitHub Url 1"), 0, 0);
+        grid.add(new Label("User Name"), 0, 0);
         TextField path1 = new TextField();
-        path1.setPromptText("https://github.com/...");
+        path1.setPromptText("Input user name");
         grid.add(path1, 1, 0);
 
-        grid.add(new Label("GitHub Url 2"), 0, 1);
+        grid.add(new Label("Repository \n Name"), 0, 1);
         TextField path2 = new TextField();
-        path2.setPromptText("https://github.com/...");
+        path2.setPromptText("Input repository name");
         grid.add(path2, 1, 1);
 
-        Label errorMessageLabel = new Label();
+        grid.add(new Label("Ontology \n Name"), 0, 2);
+        TextField path3 = new TextField();
+        path3.setPromptText("Input ontology name");
+        grid.add(path3, 1, 2);
 
-        grid.add(errorMessageLabel, 1, 2);
-        errorMessageLabel.getStyleClass().add(Vars.LABEL_ERROR_STYLE);
+        // Local Path with label and button
+        grid.add(new Label("File Path"), 0, 3);
+        Label pathLabel = new Label("");
+        pathLabel.setMaxWidth(160);
+        grid.add(pathLabel, 1, 3);
+        grid.add(browse, 2, 3);
+
+        // Error Label
+        Label errorLabel = new Label();
+        errorLabel.getStyleClass().add(Vars.LABEL_ERROR_STYLE);
+        grid.add(errorLabel, 1, 4);
 
         alert.getDialogPane().setContent(grid);
 
-        btOk.addEventFilter(ActionEvent.ACTION, event -> {
-//            System.out.println(path1.getText());
-            if (path1.getText().trim().isEmpty()) {
-                path1.getStyleClass().add(Vars.INPUT_ERROR_STYLE);
-                event.consume();
-            } else {
-                path1.getStyleClass().remove(Vars.INPUT_ERROR_STYLE);
-            }
-
-            if (path2.getText().trim().isEmpty()) {
-                path2.getStyleClass().add(Vars.INPUT_ERROR_STYLE);
-                event.consume();
-            } else {
-                path2.getStyleClass().remove(Vars.INPUT_ERROR_STYLE);
+        browse.addEventHandler(ActionEvent.ACTION, event -> {
+            FileChooser chooser = new FileChooser();
+            chooser.setInitialDirectory(new File("."));
+            File file = chooser.showOpenDialog(mainPane.getScene().getWindow());
+            if(file != null){
+                credentials.setLocalFile(file);
+                pathLabel.setText(file.getPath());
             }
         });
+
+        btOk.addEventFilter(ActionEvent.ACTION, event -> {
+            if (!isValid(path1)) event.consume();
+            else credentials.setUserName(path1.getText());
+
+            if (!isValid(path2))  event.consume();
+            else credentials.setUserRepo(path2.getText());
+
+            if (!isValid(path3)) event.consume();
+            else credentials.setOntoName(path3.getText());
+
+            if (pathLabel.getText().isEmpty()){
+                event.consume();
+                errorLabel.setText("Choose local file path!");
+            }
+        });
+
+
         alert.showAndWait();
+    }
 
+    // Additional method to obtain OWL files from GitHub
+    @FXML
+    private void createDiffGitHub() {
+        Credentials credentials = new Credentials();
+        GitHubRequest gitHubRequest = new GitHubRequest();
 
-//		FileChooser chooser = new FileChooser();
-//		chooser.setInitialDirectory(new File("."));
-//		File ontologyFile1 = chooser.showOpenDialog(mainPane.getScene().getWindow());
-//		File ontologyFile2 = chooser.showOpenDialog(mainPane.getScene().getWindow());
+        dialogInputData(credentials);
+        gitHubRequest.setCredentials(credentials);
 
-//		loadOntologyDiff(ontologyFile1,ontologyFile2);
+        if(!credentials.isValid()){
+            Logger.getRootLogger().error("Wrong GitHub local file copy credentials!");
+            return;
+        }
+
+        File githubFile = gitHubRequest.getGithubLocalFilePath();
+        File localFile = credentials.getLocalFile();
+        loadOntologyDiff(githubFile,localFile);
     }
 
     @FXML

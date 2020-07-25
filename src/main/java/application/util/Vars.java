@@ -66,7 +66,15 @@ public class Vars{
 	public static final String LISTCELL_ADD_CSS_CLASS = "element-added";
 	public static final String LISTCELL_EDIT_CSS_CLASS = "element-edit";
 	public static final String LISTCELL_REMOVE_CSS_CLASS = "element-removed";
+
 	public static final String LABEL_ERROR_STYLE = "errorLabel";
 	public static final String INPUT_ERROR_STYLE = "error";
+
+	/* GitHub Credentials. It is IMPORTANT to note, that,
+	 *	if you will not use this token one year, it might to be deprecated
+	 *  In that case it is needed to simple generate new one (17.07.2017 - generated token date)
+	 */
+	public static final String GITHUB_TOKEN_PARAMETER_NAME = "Authorization";
+	public static final String GITHUB_TOKEN = "token 3bc5ea1814dabc5dcf94aaca94c762d2bb5b0f2f";
 
 }
