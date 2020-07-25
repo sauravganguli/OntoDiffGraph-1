@@ -1,6 +1,8 @@
 package application.github;
 
 import application.util.Vars;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import org.apache.commons.io.FileUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -29,6 +31,29 @@ public class GitHubRequest {
 
 
     public GitHubRequest() {
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet request = new HttpGet("https://github.com/login/oauth/authorize");
+        try (CloseableHttpResponse response = httpClient.execute(request)) {
+            HttpEntity entity = response.getEntity();
+            String result = EntityUtils.toString(entity);
+            WebView browser = new WebView();
+            WebEngine webEngine = browser.getEngine();
+            webEngine.loadContent(result,"text/html");
+        } catch (IOException e) {
+            Logger.getRootLogger().error(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            if(httpClient != null) {
+                try {
+                    httpClient.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void gitHubAuthorize(){
 
     }
 

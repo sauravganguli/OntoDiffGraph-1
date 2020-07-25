@@ -7,18 +7,19 @@ import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class GitHubJsonParser {
 
     private final static List<GitHubJsonObject> gitHubJsonObjectArrayList = new ArrayList<>();
-    private final static ArrayList<String> pathPassed = new ArrayList<>();
+    private final static Stack<String> pathPassed = new Stack<>();
 
     public GitHubJsonParser() {
 
     }
 
     private static boolean isPathPassed(String path){
-        return pathPassed.contains(path);
+        return pathPassed.search(path) != -1;
     }
 
     public static void getJsonObjects(String response){
@@ -61,7 +62,7 @@ public class GitHubJsonParser {
             }
             if (object.getFileType().equals("dir")) {
                 result = object.getFilePath();
-                pathPassed.add(result);
+                pathPassed.push(result);
                 return result;
             }
         }
