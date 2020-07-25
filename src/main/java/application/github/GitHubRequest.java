@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -111,10 +112,17 @@ public class GitHubRequest {
         // final String localFileName = new SimpleDateFormat("yyyyMMddHHmm'ontology.owl'").format(new Date());
 
         // TODO: For now, there is only one ontology will be stored (local copy from the GitHub one)
-        final String localFileName = "resources/ontologies/localontology.owl";
+        final String localFileName = "resources"+File.pathSeparator +
+                "ontologies"+ File.pathSeparator + "localontology.owl";
 
         URL remoteFile;
         File localFile = new File(localFileName);
+        if (!localFile.exists()) {
+            boolean dirCreated = localFile.mkdirs();
+            if (dirCreated)
+                Logger.getRootLogger().info("New folders was created");
+        }
+
         int connectionTimeout = 10000;
         int readTimeout = 10000;
 

@@ -22,8 +22,11 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -33,6 +36,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -193,6 +199,22 @@ public class MainWindowController {
         }
     }
 
+    private void githubAuthentification(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/GitHubOauthWebView.fxml"));
+            Parent parent = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("OAuth Authentication");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e) {
+            Logger.getRootLogger().error(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     // Input GitHub data dialog
     private void dialogInputData(Credentials credentials){
         ButtonType confirm = ButtonType.OK;
@@ -267,13 +289,14 @@ public class MainWindowController {
             }
         });
 
-
         alert.showAndWait();
     }
 
     // Additional method to obtain OWL files from GitHub
     @FXML
     private void createDiffGitHub() {
+
+        githubAuthentification();
         Credentials credentials = new Credentials();
         GitHubRequest gitHubRequest = new GitHubRequest();
 

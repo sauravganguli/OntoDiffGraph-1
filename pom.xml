@@ -114,6 +114,13 @@
             <version>2.2.4</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-web -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>15-ea+7</version>
+        </dependency>
+
 
     </dependencies>
 

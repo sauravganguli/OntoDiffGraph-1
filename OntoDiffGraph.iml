@@ -77,5 +77,9 @@
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-web:15-ea+7" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-web:linux:15-ea+7" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-media:15-ea+7" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-media:linux:15-ea+7" level="project" />
   </component>
 </module>
