@@ -53,6 +53,8 @@ public class GitHubRequest {
 
     private String searchFileInDir(String request, String searchedFileName){
         String response = getGitHubFilesListRequest(request);
+        if(response.contains("Not Found"))
+            return "";
         List<GitHubResultList> gitHubResultList = getFileFolderListThroughJson(response);
         for (GitHubResultList entity : gitHubResultList){
             if (entity.isFile() && entity.getFileName().equals(searchedFileName))
@@ -121,9 +123,9 @@ public class GitHubRequest {
         String initialRequest = MessageFormat.format("https://api.github.com/repos/{0}/{1}/contents/",
                 credentials.getUserName(), credentials.getUserRepo());
         String downloadLink = searchFileInDir(initialRequest, credentials.getOntoName());
-        if (downloadLink.equals("")){
+        if (downloadLink.equals(""))
             return null;
-        }
+
         return downloadFile(downloadLink);
     }
 }

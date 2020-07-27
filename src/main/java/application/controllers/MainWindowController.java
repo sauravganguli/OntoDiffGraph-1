@@ -252,6 +252,8 @@ public class MainWindowController {
 
         browse.addEventHandler(ActionEvent.ACTION, event -> {
             FileChooser chooser = new FileChooser();
+            FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Ontologies (*.owl/rdf)", "*.owl", "*.rdf");
+            chooser.getExtensionFilters().add(extensionFilter);
             chooser.setInitialDirectory(new File("."));
             File file = chooser.showOpenDialog(mainPane.getScene().getWindow());
             if(file != null){
@@ -303,7 +305,7 @@ public class MainWindowController {
         }
         File githubFile = gitHubRequest.getGithubLocalFilePath(credentials);
         if (githubFile == null){
-            credentials.setErrorMessage("Remote file doesn't exists");
+            credentials.setErrorMessage("File or credentials are invalid");
             dialogInputData(credentials);
         }
         File localFile = credentials.getLocalFile();
