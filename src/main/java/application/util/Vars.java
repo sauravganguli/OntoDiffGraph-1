@@ -75,6 +75,6 @@ public class Vars{
 	 *  In that case it is needed to simple generate new one (17.07.2017 - generated token date)
 	 */
 	public static final String GITHUB_TOKEN_PARAMETER_NAME = "Authorization";
-	public static final String GITHUB_TOKEN = "token 3bc5ea1814dabc5dcf94aaca94c762d2bb5b0f2f";
+	public static String GITHUB_TOKEN = Utils.getToken();
 
 }

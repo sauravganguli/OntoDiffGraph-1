@@ -1,15 +1,15 @@
 package application.github;
 
-public class GitHubJsonObject {
+public class GitHubResultList {
     private String fileName;
     private String filePath;
     private String fileType;
     private String downloadURL;
 
-    public GitHubJsonObject() {
+    public GitHubResultList() {
     }
 
-    public GitHubJsonObject(String fileName, String filePath, String fileType, String downloadURL) {
+    public GitHubResultList(String fileName, String filePath, String fileType, String downloadURL) {
         this.fileName = removeQuotes(fileName);
         this.filePath = removeQuotes(filePath);
         this.fileType = removeQuotes(fileType);
@@ -50,5 +50,9 @@ public class GitHubJsonObject {
 
     private String removeQuotes(String str){
         return str.replace("\"", "");
+    }
+
+    public boolean isFile(){
+        return this.getFileType().equals("file");
     }
 }

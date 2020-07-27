@@ -18,15 +18,14 @@ import application.ui.*;
 import application.util.OWLElementType;
 import application.util.Utils;
 import application.util.Vars;
+import javafx.application.Preloader;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -36,8 +35,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -199,22 +196,6 @@ public class MainWindowController {
         }
     }
 
-    private void githubAuthentification(){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/GitHubOauthWebView.fxml"));
-            Parent parent = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("OAuth Authentication");
-            stage.setScene(new Scene(parent));
-            stage.show();
-        } catch (IOException e) {
-            Logger.getRootLogger().error(e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
     // Input GitHub data dialog
     private void dialogInputData(Credentials credentials){
         ButtonType confirm = ButtonType.OK;
@@ -226,7 +207,8 @@ public class MainWindowController {
         final Button btCl = (Button) alert.getDialogPane().lookupButton(cancel);
 
         alert.setTitle("GitHub file location");
-        alert.setHeaderText(null);
+        alert.setHeaderText("Set credentials");
+        alert.initStyle(StageStyle.UNDECORATED);
 
         GridPane grid = new GridPane();
         grid.setVgap(10);
@@ -263,6 +245,11 @@ public class MainWindowController {
 
         alert.getDialogPane().setContent(grid);
 
+        // If file not found exception
+        if(!credentials.getErrorMessage().equals("")){
+            errorLabel.setText(credentials.getErrorMessage());
+        }
+
         browse.addEventHandler(ActionEvent.ACTION, event -> {
             FileChooser chooser = new FileChooser();
             chooser.setInitialDirectory(new File("."));
@@ -289,6 +276,14 @@ public class MainWindowController {
             }
         });
 
+        // If window was cancelled, set values as "" instead of null
+        btCl.addEventHandler(ActionEvent.ACTION, event -> {
+            credentials.setUserName("");
+            credentials.setUserRepo("");
+            credentials.setOntoName("");
+            credentials.setLocalFile(null);
+        });
+
         alert.showAndWait();
     }
 
@@ -296,19 +291,21 @@ public class MainWindowController {
     @FXML
     private void createDiffGitHub() {
 
-        githubAuthentification();
         Credentials credentials = new Credentials();
         GitHubRequest gitHubRequest = new GitHubRequest();
 
+        // Initialize Credentials
         dialogInputData(credentials);
-        gitHubRequest.setCredentials(credentials);
 
         if(!credentials.isValid()){
             Logger.getRootLogger().error("Wrong GitHub local file copy credentials!");
             return;
         }
-
-        File githubFile = gitHubRequest.getGithubLocalFilePath();
+        File githubFile = gitHubRequest.getGithubLocalFilePath(credentials);
+        if (githubFile == null){
+            credentials.setErrorMessage("Remote file doesn't exists");
+            dialogInputData(credentials);
+        }
         File localFile = credentials.getLocalFile();
         loadOntologyDiff(githubFile,localFile);
     }

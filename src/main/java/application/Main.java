@@ -7,16 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
-public class Main extends Application{
-
+public class Main extends Application {
+	private Parent root;
 	@Override public void start(Stage primaryStage) throws Exception{
 		primaryStage.setTitle(Vars.TITLE);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainWindow.fxml"));
-		Parent root = loader.load();
+		root = loader.load();
 		MainWindowController controller = loader.getController();
 
 		primaryStage.setScene(new Scene(root));

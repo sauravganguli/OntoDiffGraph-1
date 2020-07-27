@@ -9,14 +9,17 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
-import org.semanticweb.owlapi.model.HasIRI;
+import org.apache.log4j.Logger;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLOntology;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Optional;
+import java.util.Properties;
 
 public class Utils{
 
@@ -152,5 +155,20 @@ public class Utils{
 		}
 
 		return null;
+	}
+
+	// Read gitHub token from properties file
+	public static String getToken(){
+		Properties properties = new Properties();
+		InputStream inputStream = Utils.class.getClassLoader().getResourceAsStream("application.properties");
+		try {
+			if (inputStream != null)
+				properties.load(inputStream);
+			else throw new FileNotFoundException("Property file wasn't be found");
+		} catch (IOException e) {
+			Logger.getRootLogger().error("Property file wasn't found! \n" + e.getMessage());
+			e.printStackTrace();
+		}
+		return properties.getProperty("token");
 	}
 }

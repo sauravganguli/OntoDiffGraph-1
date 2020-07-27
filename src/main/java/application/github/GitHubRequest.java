@@ -1,82 +1,39 @@
 package application.github;
 
 import application.util.Vars;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.apache.commons.io.FileUtils;
-import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GitHubRequest {
 
-    private Credentials credentials;
-    private String initialRequest;
-
-    public void setCredentials(Credentials credentials) {
-        this.credentials = credentials;
-        initialRequest = MessageFormat.format("https://api.github.com/repos/{0}/{1}/contents/",
-                credentials.getUserName(), credentials.getUserRepo());
-    }
-
-
-    public GitHubRequest() {
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpGet request = new HttpGet("https://github.com/login/oauth/authorize");
-        try (CloseableHttpResponse response = httpClient.execute(request)) {
-            HttpEntity entity = response.getEntity();
-            String result = EntityUtils.toString(entity);
-            WebView browser = new WebView();
-            WebEngine webEngine = browser.getEngine();
-            webEngine.loadContent(result,"text/html");
-        } catch (IOException e) {
-            Logger.getRootLogger().error(e.getMessage());
-            e.printStackTrace();
-        } finally {
-            if(httpClient != null) {
-                try {
-                    httpClient.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    private void gitHubAuthorize(){
-
-    }
-
-    private String sendRequest(String fileName, String requestString){
-
+    private String getGitHubFilesListRequest(String requestString){
+        String result = "";
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet request = new HttpGet(requestString);
         request.addHeader(Vars.GITHUB_TOKEN_PARAMETER_NAME, Vars.GITHUB_TOKEN);
         try (CloseableHttpResponse response = httpClient.execute(request)) {
 
-            // Get HttpResponse Status
-//            System.out.println(response.getStatusLine().toString());
-
             HttpEntity entity = response.getEntity();
-            Header headers = entity.getContentType();
-            System.out.println(headers);
 
             // return it as a String
-            String result = EntityUtils.toString(entity);
-            GitHubJsonParser.getJsonObjects(result);
-
-//            System.out.println(result);
+            result = EntityUtils.toString(entity);
 
         } catch (IOException e) {
             Logger.getRootLogger().error(e.getMessage());
@@ -91,53 +48,82 @@ public class GitHubRequest {
                 }
             }
         }
-
-        String localFileName = GitHubJsonParser.getDownloadUrlByFileName(fileName);
-        if (!localFileName.equals("")){
-            return localFileName;
-        }
-
-        String localFolderPath = GitHubJsonParser.getFolderPath();
-        if(!localFolderPath.equals("")){
-            requestString = initialRequest + localFolderPath+ "/";
-        }
-        else requestString = initialRequest;
-//        requestString = !localFolderPath.equals("") ? initialRequest + localFolderPath + "/" : initialRequest;
-
-        return sendRequest(fileName, requestString);
+        return result;
     }
 
-    private File downloadFile(String fileName){
+    private String searchFileInDir(String request, String searchedFileName){
+        String response = getGitHubFilesListRequest(request);
+        List<GitHubResultList> gitHubResultList = getFileFolderListThroughJson(response);
+        for (GitHubResultList entity : gitHubResultList){
+            if (entity.isFile() && entity.getFileName().equals(searchedFileName))
+                return entity.getDownloadURL();
+
+            if(!entity.isFile()){
+                String result = searchFileInDir(request + entity.getFileName() + "/", searchedFileName);
+                if (!result.equals(""))
+                    return result;
+            }
+        }
+        return "";
+    }
+
+    private ArrayList<GitHubResultList> getFileFolderListThroughJson(String response){
+        ArrayList<GitHubResultList> result = new ArrayList<>();
+        JsonParser jsonParser = new JsonParser();
+        JsonElement jsonElement = jsonParser.parse(response);
+        JsonArray jsonArray = jsonElement.getAsJsonArray();
+
+        for (int i = 0; i<jsonArray.size(); i++){
+            JsonObject objects = jsonArray.get(i).getAsJsonObject();
+            result.add(new GitHubResultList(
+                    objects.get("name").toString(),
+                    objects.get("path").toString(),
+                    objects.get("type").toString(),
+                    objects.get("download_url").toString()
+            ));
+        }
+        return result;
+    }
+
+
+    private File downloadFile(String ontologyDownloadLink){
         // TODO: Uncomment If you need to store every local copy of the new ontology from github
         // final String localFileName = new SimpleDateFormat("yyyyMMddHHmm'ontology.owl'").format(new Date());
 
         // TODO: For now, there is only one ontology will be stored (local copy from the GitHub one)
-        final String localFileName = "resources"+File.pathSeparator +
-                "ontologies"+ File.pathSeparator + "localontology.owl";
+        final String localFilePath = "src"+ File.separatorChar + "main" + File.separatorChar + "resources"+ File.separatorChar +
+                "ontologies";
+        final String ontologyName = "ontologyFromGitHub.owl";
 
-        URL remoteFile;
-        File localFile = new File(localFileName);
-        if (!localFile.exists()) {
-            boolean dirCreated = localFile.mkdirs();
+
+        File dir = new File(localFilePath);
+        if (!dir.exists()) {
+            boolean dirCreated = dir.mkdirs();
             if (dirCreated)
                 Logger.getRootLogger().info("New folders was created");
         }
+        File localOntologyFilePath = new File(dir.getAbsolutePath() + File.separatorChar + ontologyName);
 
         int connectionTimeout = 10000;
         int readTimeout = 10000;
 
         try {
-            remoteFile = new URL(sendRequest(fileName,initialRequest));
-            FileUtils.copyURLToFile(remoteFile, localFile, connectionTimeout, readTimeout);
+            URL remoteFile = new URL(ontologyDownloadLink);
+            FileUtils.copyURLToFile(remoteFile, localOntologyFilePath, connectionTimeout, readTimeout);
         } catch (IOException e) {
             Logger.getRootLogger().error("Error in obtaining the file " + e.getMessage());
             e.printStackTrace();
         }
-        return localFile;
+        return localOntologyFilePath;
     }
 
-    public File getGithubLocalFilePath(){
-
-        return downloadFile(credentials.getOntoName());
+    public File getGithubLocalFilePath(Credentials credentials){
+        String initialRequest = MessageFormat.format("https://api.github.com/repos/{0}/{1}/contents/",
+                credentials.getUserName(), credentials.getUserRepo());
+        String downloadLink = searchFileInDir(initialRequest, credentials.getOntoName());
+        if (downloadLink.equals("")){
+            return null;
+        }
+        return downloadFile(downloadLink);
     }
 }

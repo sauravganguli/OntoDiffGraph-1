@@ -8,9 +8,20 @@ public class Credentials {
     private String userRepo;
     private String ontoName;
     private File localFile;
+    private String errorMessage;
 
     public Credentials() {
+        this.errorMessage = "";
     }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
 
     public File getLocalFile() {
         return localFile;
