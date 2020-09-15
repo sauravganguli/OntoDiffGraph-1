@@ -252,7 +252,7 @@ public class MainWindowController {
 
         browse.addEventHandler(ActionEvent.ACTION, event -> {
             FileChooser chooser = new FileChooser();
-            FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Ontologies (*.owl/rdf)", "*.owl", "*.rdf");
+            FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Ontologies (*.owl/rdf/ttl)", "*.owl", "*.rdf", "*.ttl");
             chooser.getExtensionFilters().add(extensionFilter);
             chooser.setInitialDirectory(new File("."));
             File file = chooser.showOpenDialog(mainPane.getScene().getWindow());
