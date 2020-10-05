@@ -30,10 +30,10 @@ public class FileDiff {
         this.gitHubFileList = gitHubFileList;
     }
 
-    public List<FileDiffListData> compareFilesList(){
-        return new DiffGroup<>(
-                localFileList.stream().collect(Collectors.toList()),
-                gitHubFileList.stream().collect(Collectors.toList()),
-                (v1, v2) -> v1.getFileName().equals(v2.getFileName()));
-    }
+//    public List<FileDiffListData> compareFilesList(){
+//        return new DiffGroup<>(
+//                localFileList.stream().collect(Collectors.toList()),
+//                gitHubFileList.stream().collect(Collectors.toList()),
+//                (v1, v2) -> v1.getFileName().equals(v2.getFileName()));
+//    }
 }
