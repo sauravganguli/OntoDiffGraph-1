@@ -3,8 +3,6 @@ package application.diff;
 
 import org.semanticweb.owlapi.model.*;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OntologyDiff{

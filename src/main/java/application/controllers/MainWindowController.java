@@ -18,10 +18,8 @@ import application.ui.*;
 import application.util.OWLElementType;
 import application.util.Utils;
 import application.util.Vars;
-import javafx.application.Preloader;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -97,6 +95,11 @@ public class MainWindowController {
     //Axiom Diff
     @FXML
     private ListView<AxiomDiffListCellData> axiomDiffListView;
+
+    // File Diff
+    @FXML
+    private ListView<FileDiffListData> fileListView;
+
     @FXML
     private TextField axiomFilter;
     private ListViewFilter<AxiomDiffListCellData> axiomListViewFilter;
@@ -139,6 +142,7 @@ public class MainWindowController {
         dataListView.setCellFactory(listView -> new IRIListCell());
         annotationListView.setCellFactory(listView -> new IRIListCell());
         axiomDiffListView.setCellFactory(listView -> new AxiomDiffListCell());
+        fileListView.setCellFactory(listView -> new FileDiffList());
 
         classListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> classSelected());
         objectListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> objectSelected());
@@ -146,6 +150,7 @@ public class MainWindowController {
         annotationListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> annotationSelected());
 
         this.axiomListViewFilter = new ListViewFilter<>(axiomDiffListView, axiomFilter, (item, str) -> item.getAxiom().toString().toLowerCase().contains(str.toLowerCase()));
+
 
         //Setup logging
         Logger.getRootLogger().setLevel(Level.INFO);
@@ -531,6 +536,35 @@ public class MainWindowController {
 
         axiomListViewFilter.startFilter();
     }
+
+
+//    private void populateFilesMenu() {
+////        axiomListViewFilter.stopFilter();
+////        axiomDiffListView.getItems().clear();
+//        fileListView.getItems().clear();
+//
+//        DiffGroup<File> fileDiff = ontologyConverter.getDiff().getAxiomsDiff();
+//
+//        fileDiff.getAllValuesWithDiff().stream()
+//                .sorted(Comparator.comparing(o -> o.getFirst().toString()))
+//                .forEach(axiomTuple -> {
+//                    AxiomDiffListCellData cellData;
+//                    switch (axiomTuple.getSecond()) {
+//                        case ADD:
+//                            cellData = new AxiomDiffListCellData(axiomTuple.getFirst(), Vars.LISTCELL_ADD_CSS_CLASS);
+//                            break;
+//                        case REMOVE:
+//                            cellData = new AxiomDiffListCellData(axiomTuple.getFirst(), Vars.LISTCELL_REMOVE_CSS_CLASS);
+//                            break;
+//                        default:
+//                            cellData = new AxiomDiffListCellData(axiomTuple.getFirst(), null);
+//                            break;
+//                    }
+//                    axiomDiffListView.getItems().add(cellData);
+//                });
+//
+//        axiomListViewFilter.startFilter();
+//    }
 
 
     private void classSelected() {
