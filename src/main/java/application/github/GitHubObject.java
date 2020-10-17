@@ -1,15 +1,15 @@
 package application.github;
 
-public class GitHubResultList {
+public class GitHubObject {
     private String fileName;
     private String filePath;
     private String fileType;
     private String downloadURL;
 
-    public GitHubResultList() {
+    public GitHubObject() {
     }
 
-    public GitHubResultList(String fileName, String filePath, String fileType, String downloadURL) {
+    public GitHubObject(String fileName, String filePath, String fileType, String downloadURL) {
         this.fileName = removeQuotes(fileName);
         this.filePath = removeQuotes(filePath);
         this.fileType = removeQuotes(fileType);

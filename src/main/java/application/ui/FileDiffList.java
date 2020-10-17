@@ -17,7 +17,8 @@ public class FileDiffList extends ListCell<FileDiffListData>{
 		getStyleClass().removeAll(Vars.LISTCELL_ADD_CSS_CLASS,Vars.LISTCELL_EDIT_CSS_CLASS,Vars.LISTCELL_REMOVE_CSS_CLASS);
 
 		if(!empty && item != null){
-			setText(item.getFileName());
+			// Get File name
+			setText(item.getFile().getName());
 			if(item.getCssColorClass() != null){
 				getStyleClass().add(item.getCssColorClass());
 			}

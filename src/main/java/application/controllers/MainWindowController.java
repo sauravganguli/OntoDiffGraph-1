@@ -1,6 +1,7 @@
 package application.controllers;
 
 import application.diff.DiffGroup;
+import application.diff.FileDiff;
 import application.diff.GroupDiffType;
 import application.diff.OntologyDiff;
 import application.github.Credentials;
@@ -32,8 +33,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.StageStyle;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -44,6 +47,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.BiFunction;
@@ -96,13 +102,18 @@ public class MainWindowController {
     @FXML
     private ListView<AxiomDiffListCellData> axiomDiffListView;
 
-    // File Diff
-    @FXML
-    private ListView<FileDiffListData> fileListView;
-
     @FXML
     private TextField axiomFilter;
     private ListViewFilter<AxiomDiffListCellData> axiomListViewFilter;
+
+    // File Diff
+    @FXML
+    private ListView<FileDiffListData> fileDiffListView;
+
+    // File Diff Filter
+    @FXML
+    private TextField fileFilter;
+    private ListViewFilter<FileDiffListData> fileListViewFilter;
 
     //Logging
     @FXML
@@ -118,6 +129,7 @@ public class MainWindowController {
     private VertexClickFunctionality clickFunctionality;
 
     private OntologyToGraphConverter ontologyConverter;
+    private FileDiff fileDiff;
 
     @FXML
     private void initialize() {
@@ -142,7 +154,7 @@ public class MainWindowController {
         dataListView.setCellFactory(listView -> new IRIListCell());
         annotationListView.setCellFactory(listView -> new IRIListCell());
         axiomDiffListView.setCellFactory(listView -> new AxiomDiffListCell());
-        fileListView.setCellFactory(listView -> new FileDiffList());
+        fileDiffListView.setCellFactory(listView -> new FileDiffList());
 
         classListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> classSelected());
         objectListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> objectSelected());
@@ -151,6 +163,8 @@ public class MainWindowController {
 
         this.axiomListViewFilter = new ListViewFilter<>(axiomDiffListView, axiomFilter, (item, str) -> item.getAxiom().toString().toLowerCase().contains(str.toLowerCase()));
 
+        // File list filter
+        this.fileListViewFilter = new ListViewFilter<>(fileDiffListView, fileFilter, (item, str) -> item.getFile().getName().toLowerCase().contains(str.toLowerCase()));
 
         //Setup logging
         Logger.getRootLogger().setLevel(Level.INFO);
@@ -205,7 +219,8 @@ public class MainWindowController {
     private void dialogInputData(Credentials credentials){
         ButtonType confirm = ButtonType.OK;
         ButtonType cancel = ButtonType.CANCEL;
-        Button browse = new Button("Browse");
+        Button browseFile = new Button("Browse File");
+        Button browseFolder = new Button("Browse Folder");
 
         Alert alert = new Alert(Alert.AlertType.NONE, "", confirm, cancel);
         final Button btOk = (Button) alert.getDialogPane().lookupButton(confirm);
@@ -234,19 +249,39 @@ public class MainWindowController {
         grid.add(new Label("Ontology \n Name"), 0, 2);
         TextField path3 = new TextField();
         path3.setPromptText("Input ontology name");
+        path3.textProperty().addListener(
+                (observable -> {
+                    if(!path3.getText().isEmpty()) { browseFolder.setDisable(true); browseFile.setDisable(false);}
+                    else { browseFolder.setDisable(false); browseFile.setDisable(true);}
+                })
+        );
+        path3.setTooltip(new Tooltip("If you don't specified \n " +
+                "this text field \n " +
+                "then you choose \n " +
+                "check differences \n" +
+                "by file list"));
         grid.add(path3, 1, 2);
 
-        // Local Path with label and button
+        // Local File Path with label and button
         grid.add(new Label("File Path"), 0, 3);
         Label pathLabel = new Label("");
         pathLabel.setMaxWidth(160);
+        browseFile.setDisable(true);
         grid.add(pathLabel, 1, 3);
-        grid.add(browse, 2, 3);
+        grid.add(browseFile, 2, 3);
+
+        // Local Directory Path with label and button
+        grid.add(new Label("Folder Path"), 0, 4);
+        Label folderLabel = new Label("");
+        folderLabel.setMaxWidth(160);
+        browseFolder.setDisable(false);
+        grid.add(folderLabel, 1, 4);
+        grid.add(browseFolder, 2, 4);
 
         // Error Label
         Label errorLabel = new Label();
         errorLabel.getStyleClass().add(Vars.LABEL_ERROR_STYLE);
-        grid.add(errorLabel, 1, 4);
+        grid.add(errorLabel, 1, 5);
 
         alert.getDialogPane().setContent(grid);
 
@@ -255,7 +290,7 @@ public class MainWindowController {
             errorLabel.setText(credentials.getErrorMessage());
         }
 
-        browse.addEventHandler(ActionEvent.ACTION, event -> {
+        browseFile.addEventHandler(ActionEvent.ACTION, event -> {
             FileChooser chooser = new FileChooser();
             FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Ontologies (*.owl/rdf/ttl)", "*.owl", "*.rdf", "*.ttl");
             chooser.getExtensionFilters().add(extensionFilter);
@@ -267,19 +302,35 @@ public class MainWindowController {
             }
         });
 
+        browseFolder.addEventHandler(ActionEvent.ACTION, event -> {
+            DirectoryChooser chooser = new DirectoryChooser();
+            chooser.setInitialDirectory(new File("."));
+            File selectedDirectory = chooser.showDialog(mainPane.getScene().getWindow());
+            if(selectedDirectory != null){
+                File dir = new File(selectedDirectory.getPath());
+                // add files with ontological extensions
+                String[] extensions = new String[]{"owl", "rdf", "ttl"};
+                credentials.setFileList(new ArrayList<>(FileUtils.listFiles(dir, extensions, true)));
+                folderLabel.setText(selectedDirectory.getAbsolutePath());
+            }
+        });
+
         btOk.addEventFilter(ActionEvent.ACTION, event -> {
             if (!isValid(path1)) event.consume();
             else credentials.setUserName(path1.getText());
 
-            if (!isValid(path2))  event.consume();
+            if (!isValid(path2)) event.consume();
             else credentials.setUserRepo(path2.getText());
 
-            if (!isValid(path3)) event.consume();
-            else credentials.setOntoName(path3.getText());
+            if(!path3.getText().isEmpty())
+                credentials.setOntoName(path3.getText());
+            else credentials.setOntoName(".owl,.rdf,.ttl");
+//            if (!isValid(path3)) event.consume();
+//            else credentials.setOntoName(path3.getText());
 
-            if (pathLabel.getText().isEmpty()){
+            if (pathLabel.getText().isEmpty() && folderLabel.getText().isEmpty()){
                 event.consume();
-                errorLabel.setText("Choose local file path!");
+                errorLabel.setText("Choose local path!");
             }
         });
 
@@ -289,6 +340,7 @@ public class MainWindowController {
             credentials.setUserRepo("");
             credentials.setOntoName("");
             credentials.setLocalFile(null);
+            credentials.setFileList(new ArrayList<>());
         });
 
         alert.showAndWait();
@@ -308,11 +360,24 @@ public class MainWindowController {
             Logger.getRootLogger().error("Wrong GitHub local file copy credentials!");
             return;
         }
+
+        // Switch between ontology file and folder diff
+        if(credentials.getFileList() != null){
+            List<File> localFileList = credentials.getFileList();
+            List<File> gitHubFileList = gitHubRequest.getGithubLocalFolderFileList(credentials);
+            fileDiff = new FileDiff(localFileList, gitHubFileList);
+            populateFileMenu();
+
+            return;
+        }
+
         File githubFile = gitHubRequest.getGithubLocalFilePath(credentials);
         if (githubFile == null){
             credentials.setErrorMessage("File or credentials are invalid");
             dialogInputData(credentials);
         }
+
+
         File localFile = credentials.getLocalFile();
         loadOntologyDiff(githubFile,localFile);
     }
@@ -538,33 +603,34 @@ public class MainWindowController {
     }
 
 
-//    private void populateFilesMenu() {
-////        axiomListViewFilter.stopFilter();
-////        axiomDiffListView.getItems().clear();
-//        fileListView.getItems().clear();
-//
-//        DiffGroup<File> fileDiff = ontologyConverter.getDiff().getAxiomsDiff();
-//
-//        fileDiff.getAllValuesWithDiff().stream()
-//                .sorted(Comparator.comparing(o -> o.getFirst().toString()))
-//                .forEach(axiomTuple -> {
-//                    AxiomDiffListCellData cellData;
-//                    switch (axiomTuple.getSecond()) {
-//                        case ADD:
-//                            cellData = new AxiomDiffListCellData(axiomTuple.getFirst(), Vars.LISTCELL_ADD_CSS_CLASS);
-//                            break;
-//                        case REMOVE:
-//                            cellData = new AxiomDiffListCellData(axiomTuple.getFirst(), Vars.LISTCELL_REMOVE_CSS_CLASS);
-//                            break;
-//                        default:
-//                            cellData = new AxiomDiffListCellData(axiomTuple.getFirst(), null);
-//                            break;
-//                    }
-//                    axiomDiffListView.getItems().add(cellData);
-//                });
-//
-//        axiomListViewFilter.startFilter();
-//    }
+
+    private void populateFileMenu() {
+        fileListViewFilter.stopFilter();
+        fileDiffListView.getItems().clear();
+
+        // Generate list of changes
+        DiffGroup<File> fileDiffListDataDiffGroup = fileDiff.compareFilesList();
+
+        fileDiffListDataDiffGroup.getAllValuesWithDiff().stream()
+                .sorted(Comparator.comparing(o -> o.getFirst().getName()))
+                .forEach(fileTuple -> {
+                    FileDiffListData fileListData;
+                    switch (fileTuple.getSecond()) {
+                        case ADD:
+                            fileListData = new FileDiffListData(fileTuple.getFirst(), Vars.LISTCELL_ADD_CSS_CLASS);
+                            break;
+                        case REMOVE:
+                            fileListData = new FileDiffListData(fileTuple.getFirst(), Vars.LISTCELL_REMOVE_CSS_CLASS);
+                            break;
+                        default:
+                            fileListData = new FileDiffListData(fileTuple.getFirst(), null);
+                            break;
+                    }
+                    fileDiffListView.getItems().add(fileListData);
+                });
+
+        fileListViewFilter.startFilter();
+    }
 
 
     private void classSelected() {

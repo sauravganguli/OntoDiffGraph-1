@@ -1,39 +1,47 @@
 package application.diff;
 
-import application.ui.FileDiffListData;
-
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class FileDiff {
-    private List<FileDiffListData> localFileList;
-    private List<FileDiffListData> gitHubFileList;
+    private List<File> localFileList;
+    private List<File> gitHubFileList;
 
-    public FileDiff(List<FileDiffListData> localFileList, List<FileDiffListData> gitHubFileList) {
+    public FileDiff(List<File> localFileList, List<File> gitHubFileList) {
         this.localFileList = localFileList;
         this.gitHubFileList = gitHubFileList;
     }
 
-    public List<FileDiffListData> getLocalFileList() {
+//    public List<File> getCorrectElementOntology(GroupDiffType diffType){
+//        switch(diffType){
+//            case ADD: return localFileList;
+//            case REMOVE: return gitHubFileList;
+//            case UNCHANGED: return gitHubFileList;
+//            default: return gitHubFileList;
+//        }
+//    }
+
+    public List<File> getLocalFileList() {
         return localFileList;
     }
 
-    public void setLocalFileList(List<FileDiffListData> localFileList) {
+    public void setLocalFileList(List<File> localFileList) {
         this.localFileList = localFileList;
     }
 
-    public List<FileDiffListData> getGitHubFileList() {
+    public List<File> getGitHubFileList() {
         return gitHubFileList;
     }
 
-    public void setGitHubFileList(List<FileDiffListData> gitHubFileList) {
+    public void setGitHubFileList(List<File> gitHubFileList) {
         this.gitHubFileList = gitHubFileList;
     }
 
-//    public List<FileDiffListData> compareFilesList(){
-//        return new DiffGroup<>(
-//                localFileList.stream().collect(Collectors.toList()),
-//                gitHubFileList.stream().collect(Collectors.toList()),
-//                (v1, v2) -> v1.getFileName().equals(v2.getFileName()));
-//    }
+    public DiffGroup<File> compareFilesList(){
+        return new DiffGroup<>(
+                new ArrayList<>(localFileList),
+                new ArrayList<>(gitHubFileList),
+                File::equals);
+    }
 }

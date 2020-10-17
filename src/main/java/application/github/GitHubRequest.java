@@ -19,9 +19,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GitHubRequest {
+
+    private final List<GitHubFile> downloadLinks = new ArrayList<>();
 
     private String getGitHubFilesListRequest(String requestString){
         String result = "";
@@ -51,33 +54,42 @@ public class GitHubRequest {
         return result;
     }
 
-    private String searchFileInDir(String request, String searchedFileName){
+    /**
+     * If it is needed to search by whole word than @completelyName flag is true
+     * If it is needed to search by partial file name, then @completelyName false
+     * */
+    private void searchFileInDir(String request, String searchedFileName){
         String response = getGitHubFilesListRequest(request);
         if(response.contains("Not Found"))
-            return "";
-        List<GitHubResultList> gitHubResultList = getFileFolderListThroughJson(response);
-        for (GitHubResultList entity : gitHubResultList){
-            if (entity.isFile() && entity.getFileName().equals(searchedFileName))
-                return entity.getDownloadURL();
+            return;
+        List<GitHubObject> gitHubObject = getFileFolderListThroughJson(response);
+        for (GitHubObject entity : gitHubObject){
+
+            if (entity.isFile() && entity.getFileName().contains(searchedFileName)) {
+                downloadLinks.add(new GitHubFile(entity.getFileName(), entity.getDownloadURL()));
+
+                // If it is searched by whole name than check is file name completely equals and exit function
+                if(entity.getFileName().equals(searchedFileName)) return;
+                else continue;
+            }
 
             if(!entity.isFile()){
-                String result = searchFileInDir(request + entity.getFileName() + "/", searchedFileName);
-                if (!result.equals(""))
-                    return result;
+                searchFileInDir(request + entity.getFileName() + "/", searchedFileName);
+//                if (!result.equals(""))
+//                    return result;
             }
         }
-        return "";
     }
 
-    private ArrayList<GitHubResultList> getFileFolderListThroughJson(String response){
-        ArrayList<GitHubResultList> result = new ArrayList<>();
+    private ArrayList<GitHubObject> getFileFolderListThroughJson(String response){
+        ArrayList<GitHubObject> result = new ArrayList<>();
         JsonParser jsonParser = new JsonParser();
         JsonElement jsonElement = jsonParser.parse(response);
         JsonArray jsonArray = jsonElement.getAsJsonArray();
 
         for (int i = 0; i<jsonArray.size(); i++){
             JsonObject objects = jsonArray.get(i).getAsJsonObject();
-            result.add(new GitHubResultList(
+            result.add(new GitHubObject(
                     objects.get("name").toString(),
                     objects.get("path").toString(),
                     objects.get("type").toString(),
@@ -88,14 +100,14 @@ public class GitHubRequest {
     }
 
 
-    private File downloadFile(String ontologyDownloadLink){
+    private File downloadFile(String ontologyDownloadLink, String ontologyName){
         // TODO: Uncomment If you need to store every local copy of the new ontology from github
         // final String localFileName = new SimpleDateFormat("yyyyMMddHHmm'ontology.owl'").format(new Date());
 
         // TODO: For now, there is only one ontology will be stored (local copy from the GitHub one)
         final String localFilePath = "src"+ File.separatorChar + "main" + File.separatorChar + "resources"+ File.separatorChar +
                 "ontologies";
-        final String ontologyName = "ontologyFromGitHub.owl";
+        //final String ontologyName = "ontologyFromGitHub.owl";
 
 
         File dir = new File(localFilePath);
@@ -122,10 +134,29 @@ public class GitHubRequest {
     public File getGithubLocalFilePath(Credentials credentials){
         String initialRequest = MessageFormat.format("https://api.github.com/repos/{0}/{1}/contents/",
                 credentials.getUserName(), credentials.getUserRepo());
-        String downloadLink = searchFileInDir(initialRequest, credentials.getOntoName());
-        if (downloadLink.equals(""))
+        // call of recursive function
+        searchFileInDir(initialRequest, credentials.getOntoName());
+        if (downloadLinks.isEmpty())
             return null;
 
-        return downloadFile(downloadLink);
+        // return first file with the pointed name
+        return downloadFile(downloadLinks.get(0).getDownloadLink(), downloadLinks.get(0).getFileName());
+    }
+
+    public List<File> getGithubLocalFolderFileList(Credentials credentials){
+        List<File> result = new ArrayList<>();
+        String initialRequest = MessageFormat.format("https://api.github.com/repos/{0}/{1}/contents/",
+                credentials.getUserName(), credentials.getUserRepo());
+
+        // Default ontology name value is always contains statements with comma, which are separate searched extensions
+        List<String> extensionList = Arrays.asList(credentials.getOntoName().split(","));
+        extensionList.forEach(v->searchFileInDir(initialRequest, v));
+        if (downloadLinks.isEmpty())
+            return null;
+
+        // download all files from GitHub repository
+        downloadLinks.forEach(v -> result.add(downloadFile(v.getDownloadLink(), v.getFileName())));
+
+        return result;
     }
 }

@@ -31,11 +31,11 @@
 
                         <Menu mnemonicParsing="false" text="Create Ontology Diff" >
                             <MenuItem mnemonicParsing="false" onAction="#createDiff" text="Create Ontology Diff Local" />
-                            <MenuItem mnemonicParsing="false" onAction="#createDiffGitHub" text="Create Ontology Diff GitHub"/>
+                            <MenuItem mnemonicParsing="false" onAction="#createDiffGitHub" text="Create Source Diff GitHub"/>
                         </Menu>
 					</items>
 				</Menu>
-            <Menu mnemonicParsing="false" text="About">
+                <Menu mnemonicParsing="false" text="About">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#showHelpModal" text="Help" />
               </items>
@@ -99,7 +99,7 @@
                     <content>
                       <AnchorPane>
                            <children>
-                              <GridPane fx:id="elementData" hgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="5.0">
+                              <GridPane fx:id="elementData" hgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -122,8 +122,8 @@
                       <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                               <children>
-                                  <!--<TextField fx:id="fileFilter" />-->
-                                  <ListView fx:id="fileListView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS" />
+                                  <TextField fx:id="fileFilter" />
+                                  <ListView fx:id="fileDiffListView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS" />
                               </children>
                           </AnchorPane>
                       </content>

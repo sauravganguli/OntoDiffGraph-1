@@ -1,6 +1,9 @@
 package application.github;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Credentials {
 
@@ -9,9 +12,23 @@ public class Credentials {
     private String ontoName;
     private File localFile;
     private String errorMessage;
+    private List<File> fileList;
+
 
     public Credentials() {
         this.errorMessage = "";
+    }
+
+    public List<File> getFileList() {
+        return fileList;
+    }
+
+    public void setFileList(List<File> fileList) {
+        this.fileList = fileList;
+    }
+
+    public void setFileList(File[] files) {
+        this.fileList =  Arrays.stream(files).collect(Collectors.toList());
     }
 
     public String getErrorMessage() {
@@ -63,7 +80,7 @@ public class Credentials {
     }
 
     public boolean isValid(){
-        return !userName.equals("") && !userRepo.equals("") && !ontoName.equals("") && localFile != null;
+        return !userName.equals("") && !userRepo.equals("") && !ontoName.equals("") && (localFile != null || !fileList.isEmpty());
     }
 
 

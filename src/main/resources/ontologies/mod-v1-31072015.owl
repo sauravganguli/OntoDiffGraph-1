@@ -1,0 +1,2093 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.isibang.ac.in/mod/ns#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.isibang.ac.in/mod/ns#">
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="dc" IRI="http://purl.org/dc/elements/1.1/"/>
+    <Prefix name="mod" IRI="http://www.isibang.ac.in/mod/ns#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="dcmi" IRI="http://purl.org/dc/terms/"/>
+    <Prefix name="foaf" IRI="http://xmlns.com/foaf/0.1/"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="skos" IRI="http://www.w3.org/2004/02/skos/core#"/>
+    <Prefix name="void" IRI="http://rdfs.org/ns/void#"/>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="owl:versionInfo"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">version: 1.0 (revison: 0.1) </Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">MOD: Metadata for Ontology Description and publication</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dc:creator"/>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Biswanath Dutta (DRTC, Indian Statistical Institute, Bangalore, India) and Durgesh Nandini (Durgapur, India) </Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="Domain"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="FileFormat"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="KnowledgeRepresentationFormalism"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="LevelOfFormality"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="License"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Ontology"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="OntologyDesignLanguage"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="OntologyDesignMethodology"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="OntologyDesignTool"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="OntologySyntax"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="OntologyType"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="foaf:Agent"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="foaf:Organisation"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="foaf:Person"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="foaf:Project"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="dc:contributer"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="dc:creator"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="dc:format"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="dc:subject"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="dc:type"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="dcmi:license"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="endorsedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="evaluatedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="formalityLevel"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="knowledgeRepresentationFormalism"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="methodologyUsed"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="module"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="ontologyInUse"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="ontologyLanguage"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="sourceOntology"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="sponseredBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="syntax"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="toolUsed"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="dc:description"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="dc:identifier"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="dc:language"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="Acronym"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="accessibility"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="address"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="classes"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="competencyQuestion"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="country"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="creationDate"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="document"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="homepage"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="individuals"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="keyword"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="numberOfAxioms"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="pin"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="properties"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="size"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="state"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="status"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="street"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="version"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="vocabularyUsed"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="skos:altLabel"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="foaf:firstName"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="foaf:lastName"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="foaf:mbox"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="foaf:name"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="foaf:phone"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI=".GAF"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI=".OWL"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI=".RDF"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI=".RDFS"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI=".XML"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Apache"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="ApplicationOntology"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="CoreReferenceOntology"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="CreativeCommons"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Cyc"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="DAML"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="DUET"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="DescriptionLogics"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="DomainOntology"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="FirstOrderLogic"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Formal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Frame"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="GNUFreeDocumentationLicense"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="GNUGeneralPublicLicense"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="GeneralOntology"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="GrungerAndFoxMethodology"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Informal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="KACTUS"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="KIF"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="LGPL"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Loom"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Methontology"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="N-Triples"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Notation3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="OCML"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="OIL"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="OILEd"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="OWL"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="On-To-Knowledge"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="OntoEdit"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="OntoEditProfessional"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Ontobroker"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Ontolingua"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="OntolinguaServer"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Ontosaurus"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="ProcessOntology"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="PropositionalLogics"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Protege"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="RDF/XML"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="RDFS"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="RDFa"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="RadLex®"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Semi-formal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Semi-informal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Sensus"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="ServiceOntology"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="TaskOntology"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Topbraid"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Tove"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Turtle"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="UscholdAndKingsMethod"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="WebODE"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="WebOnto"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="XOL"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="YAMO"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="dc:creator"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="Ontology"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty abbreviatedIRI="dc:creator"/>
+            <Class abbreviatedIRI="foaf:Agent"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Ontology"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty abbreviatedIRI="dc:subject"/>
+            <Class IRI="Domain"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Ontology"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty abbreviatedIRI="dc:type"/>
+            <Class IRI="OntologyType"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Ontology"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="knowledgeRepresentationFormalism"/>
+            <Class IRI="KnowledgeRepresentationFormalism"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Ontology"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="ontologyLanguage"/>
+            <Class IRI="OntologyDesignLanguage"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Ontology"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="syntax"/>
+            <Class IRI="OntologySyntax"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Ontology"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="formalityLevel"/>
+            <Class IRI="LevelOfFormality"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Ontology"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="competencyQuestion"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Ontology"/>
+        <DataSomeValuesFrom>
+            <DataProperty abbreviatedIRI="foaf:name"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="foaf:Organisation"/>
+        <Class abbreviatedIRI="foaf:Agent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="foaf:Person"/>
+        <Class abbreviatedIRI="foaf:Agent"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class abbreviatedIRI="foaf:Organisation"/>
+        <Class abbreviatedIRI="foaf:Person"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="FileFormat"/>
+        <NamedIndividual IRI=".GAF"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="FileFormat"/>
+        <NamedIndividual IRI=".OWL"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="FileFormat"/>
+        <NamedIndividual IRI=".RDF"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="FileFormat"/>
+        <NamedIndividual IRI=".RDFS"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="FileFormat"/>
+        <NamedIndividual IRI=".XML"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="License"/>
+        <NamedIndividual IRI="Apache"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">An application ontology is an ontology engineered for a specific use or application focus and whose scope is specified through testable use cases. The application ontology will often use or reference canonical ontologies to construct ontological classes and relationships between classes. Application ontologies are used when modeling cross-domain experiments in biology, for data annotation or visualization and for producing data driven views across reference ontologies for specific user groups.</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid50955320606094"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Application Ontology</Literal>
+        </Annotation>
+        <Class IRI="OntologyType"/>
+        <NamedIndividual IRI="ApplicationOntology"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral"> This type of ontology is linked to a domain but it integrates different viewpoints related to spe- cific group of users. This type of ontology is the result of the integration of several domain ontologies. A core reference ontology is often built to catch the central concepts and relations of the domain.
+ Example: Hydrontology
+</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid51440825645545"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Core Reference Ontologies</Literal>
+        </Annotation>
+        <Class IRI="OntologyType"/>
+        <NamedIndividual IRI="CoreReferenceOntology"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <AnonymousIndividual nodeID="_:http://www.semanticweb.org/sudha/ontologies/2014/6/try1#genid22457999444928"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">A Creative Commons (CC) license is one of several public copyright licenses that enable the free distribution of an otherwise copyrighted work.</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Creative Commons</Literal>
+        </Annotation>
+        <Class IRI="License"/>
+        <NamedIndividual IRI="CreativeCommons"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid138809695017357"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Cyc</Literal>
+        </Annotation>
+        <Class IRI="OntologyDesignMethodology"/>
+        <NamedIndividual IRI="Cyc"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Darpa Agent Markup Language</Literal>
+        </Annotation>
+        <Class IRI="OntologyDesignLanguage"/>
+        <NamedIndividual IRI="DAML"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">DUET</Literal>
+        </Annotation>
+        <Class IRI="OntologyDesignTool"/>
+        <NamedIndividual IRI="DUET"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid146548179981252"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">DL is used in artificial intelligence for formal reasoning on the concepts of an application domain (known as terminological knowledge). It is of particular importance in providing a logical formalism for ontologies and the Semantic Web. </Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Description Logic</Literal>
+        </Annotation>
+        <Class IRI="KnowledgeRepresentationFormalism"/>
+        <NamedIndividual IRI="DescriptionLogics"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Domain ontology is only applicable to a domain with a specific view point. That is to say that this viewpoint defines how a group of users conceptualize and visualize some specific phenomenon. This domain ontology could be linked to a specific application: electric network management system for example.
+ </Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid51348942818936"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Domain Ontology</Literal>
+        </Annotation>
+        <Class IRI="OntologyType"/>
+        <NamedIndividual IRI="DomainOntology"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">The ultimate knowledge representation formalism in terms of expressive power and compactness is First Order Logic (FOL). It was used by mathematicians to define general propositions about the world.</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid145877709452634"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">First Order Logic</Literal>
+        </Annotation>
+        <Class IRI="KnowledgeRepresentationFormalism"/>
+        <NamedIndividual IRI="FirstOrderLogic"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="LevelOfFormality"/>
+        <NamedIndividual IRI="Formal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral"> F-logic combines the advantages of conceptual modeling with object-oriented, frame-based languages and offers a declarative, compact and simple syntax, as well as the well-defined semantics of a logic-based language. Features include, among others, object identity, complex objects, inheritance, polymorphism, query methods, encapsulation.</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid146582869618950"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Frame</Literal>
+        </Annotation>
+        <Class IRI="KnowledgeRepresentationFormalism"/>
+        <NamedIndividual IRI="Frame"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="License"/>
+        <NamedIndividual IRI="GNUFreeDocumentationLicense"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="License"/>
+        <NamedIndividual IRI="GNUGeneralPublicLicense"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">General ontologies are not dedicated to a specific domain or fields. They contain general knowledge of a huge area.
+ Example: OpenCyc Ontology
+</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid51563668328879"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral"> General Ontologies
+</Literal>
+        </Annotation>
+        <Class IRI="OntologyType"/>
+        <NamedIndividual IRI="GeneralOntology"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid137762981722414"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Gr€uuninger and Fox propose a methodology that is inspired on the development of knowledge - based systems usingfirst order logic.They propose first to identify intuitively the main scenarios (possible applications in which the ontology will be used). Then, a set of natural language questions, called competency questions, are used to determine the scope of the ontology. These questions and their answers are used both to extract the main concepts and their properties, relations and axioms on the ontology. </Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Griinger and Fox methodology</Literal>
+        </Annotation>
+        <Class IRI="OntologyDesignMethodology"/>
+        <NamedIndividual IRI="GrungerAndFoxMethodology"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="LevelOfFormality"/>
+        <NamedIndividual IRI="Informal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid137866925104706"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">The ontology is built on the basis of an application KB, by means of a process of abstraction (that is, following a bottom-up strategy).</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">KACTUS</Literal>
+        </Annotation>
+        <Class IRI="OntologyDesignMethodology"/>
+        <NamedIndividual IRI="KACTUS"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignLanguage"/>
+        <NamedIndividual IRI="KIF"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="License"/>
+        <NamedIndividual IRI="LGPL"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignLanguage"/>
+        <NamedIndividual IRI="Loom"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid136891187407577"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Methontology is the most mature approach, and is recommended by FIPAfor the ontology construction task. The METHONTOLOGY frame-
+work enables the construction of ontologies at the knowledge level. It includes: the identification of the ontology development process, a life cycle based on evolving prototypes, and particular techniques to carry out each activity.</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Methontology</Literal>
+        </Annotation>
+        <Class IRI="OntologyDesignMethodology"/>
+        <NamedIndividual IRI="Methontology"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologySyntax"/>
+        <NamedIndividual IRI="N-Triples"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Notation3, or N3 as it is more commonly known, is a shorthand non-XML serialization of Resource Description Framework models, designed with human-readability in mind: N3 is much more compact and readable than XML RDF notation.</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid53369027240277"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Notation 3</Literal>
+        </Annotation>
+        <Class IRI="OntologySyntax"/>
+        <NamedIndividual IRI="Notation3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignLanguage"/>
+        <NamedIndividual IRI="OCML"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://www.semanticweb.org/sudha/ontologies/2014/6/try1#genid23902519724482"/>
+        </Annotation>
+        <Class IRI="OntologyDesignLanguage"/>
+        <NamedIndividual IRI="OIL"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignTool"/>
+        <NamedIndividual IRI="OILEd"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://www.semanticweb.org/sudha/ontologies/2014/6/try1#genid23879398750191"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Web Ontology Language</Literal>
+        </Annotation>
+        <Class IRI="OntologyDesignLanguage"/>
+        <NamedIndividual IRI="OWL"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid138386559762542"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">On - To - Knowledge</Literal>
+        </Annotation>
+        <Class IRI="OntologyDesignMethodology"/>
+        <NamedIndividual IRI="On-To-Knowledge"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignTool"/>
+        <NamedIndividual IRI="OntoEdit"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignTool"/>
+        <NamedIndividual IRI="OntoEditProfessional"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignTool"/>
+        <NamedIndividual IRI="Ontobroker"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignLanguage"/>
+        <NamedIndividual IRI="Ontolingua"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignTool"/>
+        <NamedIndividual IRI="OntolinguaServer"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignTool"/>
+        <NamedIndividual IRI="Ontosaurus"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid147439156955198"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">A process ontology is a description of the components and their relationships that make up a process. A formal process ontology is an ontology in the knowledge domain of processes.</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Process Ontology</Literal>
+        </Annotation>
+        <Class IRI="OntologyType"/>
+        <NamedIndividual IRI="ProcessOntology"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid146788586655707"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Propositional Logic</Literal>
+        </Annotation>
+        <Class IRI="KnowledgeRepresentationFormalism"/>
+        <NamedIndividual IRI="PropositionalLogics"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignTool"/>
+        <NamedIndividual IRI="Protege"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">RDF/XML is a syntax,[1] defined by the W3C[2] , to express (i.e. serialize) an RDF graph as an XML document.</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">RDF / XML</Literal>
+        </Annotation>
+        <Class IRI="OntologySyntax"/>
+        <NamedIndividual IRI="RDF/XML"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignLanguage"/>
+        <NamedIndividual IRI="RDFS"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologySyntax"/>
+        <NamedIndividual IRI="RDFa"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <AnonymousIndividual nodeID="_:http://www.semanticweb.org/sudha/ontologies/2014/6/try1#genid23141026786245"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">RadLex® is a reference ontology for the domai
+n of radiology and is an active, curated
+ontology.This License permits public access to the Release Version of RadLex® and makes it
+possible for Licensees to use it for clinical, research, educational and commercial
+activities without charge. </Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">RadLex®</Literal>
+        </Annotation>
+        <Class IRI="License"/>
+        <NamedIndividual IRI="RadLex®"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">A glossary, also known as a vocabulary, or clavis, is an alphabetical list of terms in a particular domain of knowledge with the definitions for those terms. 
+In a general sense, a glossary contains explanations of concepts relevant to a certain field of study or action.</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid5659291346458"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Glossary</Literal>
+        </Annotation>
+        <Class IRI="LevelOfFormality"/>
+        <NamedIndividual IRI="Semi-formal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">It refers to a classification of things or concepts, as well as to the principles underlying such a classification. Taxonomy is different from meronomy which is dealing with the classification of parts of a whole</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid5531274397219"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Taxonomy</Literal>
+        </Annotation>
+        <Class IRI="LevelOfFormality"/>
+        <NamedIndividual IRI="Semi-informal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid137883235289539"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">This approach promotes sharability of knowledge, since the same base ontology is used to develop ontologies in particular domains. The method based on Sensus is a top-down approach for deriving domain specific ontologies from huge ontologies.The authors propose to identify a set of ‘‘seed’&apos; terms that are relevant to a particular domain. These terms are linked manually to a broad-coverage ontology.</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Sensus</Literal>
+        </Annotation>
+        <Class IRI="OntologyDesignMethodology"/>
+        <NamedIndividual IRI="Sensus"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyType"/>
+        <NamedIndividual IRI="ServiceOntology"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Task Ontology is a specification or detailed description of elements and relationships of tasks to explain how tasks can exist and be used in a specific field or environment.</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid51904590485402"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Task Ontology</Literal>
+        </Annotation>
+        <Class IRI="OntologyType"/>
+        <NamedIndividual IRI="TaskOntology"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignTool"/>
+        <NamedIndividual IRI="Topbraid"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid138828691354656"/>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Tove</Literal>
+        </Annotation>
+        <Class IRI="OntologyDesignMethodology"/>
+        <NamedIndividual IRI="Tove"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologySyntax"/>
+        <NamedIndividual IRI="Turtle"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">The Uschold and King’s method proposes four activities: (1) to identify the purpose of the ontology, (2) to build it,  (3) to evaluate it, and (4) to document it.</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="&rdf;PlainLiteral">Uschold and King&apos;s method</Literal>
+        </Annotation>
+        <Class IRI="OntologyDesignMethodology"/>
+        <NamedIndividual IRI="UscholdAndKingsMethod"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignTool"/>
+        <NamedIndividual IRI="WebODE"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignTool"/>
+        <NamedIndividual IRI="WebOnto"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignLanguage"/>
+        <NamedIndividual IRI="XOL"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OntologyDesignMethodology"/>
+        <NamedIndividual IRI="YAMO"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="methodologyUsed"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid136891187407577"/>
+        <NamedIndividual IRI="Methontology"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="methodologyUsed"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid136980605700044"/>
+        <NamedIndividual IRI="UscholdAndKingsMethod"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="methodologyUsed"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid137762981722414"/>
+        <NamedIndividual IRI="GrungerAndFoxMethodology"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="methodologyUsed"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid137866925104706"/>
+        <NamedIndividual IRI="KACTUS"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="methodologyUsed"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid137883235289539"/>
+        <NamedIndividual IRI="Sensus"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="methodologyUsed"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid138267875829506"/>
+        <NamedIndividual IRI="Sensus"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="methodologyUsed"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid138386559762542"/>
+        <NamedIndividual IRI="On-To-Knowledge"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="methodologyUsed"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid138809695017357"/>
+        <NamedIndividual IRI="Cyc"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="methodologyUsed"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid138828691354656"/>
+        <NamedIndividual IRI="Tove"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="knowledgeRepresentationFormalism"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid145877709452634"/>
+        <NamedIndividual IRI="FirstOrderLogic"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="knowledgeRepresentationFormalism"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid146548179981252"/>
+        <NamedIndividual IRI="DescriptionLogics"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="knowledgeRepresentationFormalism"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid146582869618950"/>
+        <NamedIndividual IRI="Frame"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="knowledgeRepresentationFormalism"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid146788586655707"/>
+        <NamedIndividual IRI="PropositionalLogics"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="dc:type"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid147439156955198"/>
+        <NamedIndividual IRI="ProcessOntology"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="dc:type"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid50955320606094"/>
+        <NamedIndividual IRI="ApplicationOntology"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="dc:type"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid51348942818936"/>
+        <NamedIndividual IRI="DomainOntology"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="dc:type"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid51440825645545"/>
+        <NamedIndividual IRI="CoreReferenceOntology"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="dc:type"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid51563668328879"/>
+        <NamedIndividual IRI="GeneralOntology"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="dc:type"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid51904590485402"/>
+        <NamedIndividual IRI="TaskOntology"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="syntax"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid53369027240277"/>
+        <NamedIndividual IRI="Notation3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="formalityLevel"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid54668695747052"/>
+        <NamedIndividual IRI="Formal"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="formalityLevel"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid5531274397219"/>
+        <NamedIndividual IRI="Semi-informal"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="formalityLevel"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid5659291346458"/>
+        <NamedIndividual IRI="Semi-formal"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="formalityLevel"/>
+        <AnonymousIndividual nodeID="_:http://www.semanticweb.org/sudha/ontologies/2014/6/try1#genid20354250674488"/>
+        <NamedIndividual IRI="Formal"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="dcmi:license"/>
+        <AnonymousIndividual nodeID="_:http://www.semanticweb.org/sudha/ontologies/2014/6/try1#genid22457999444928"/>
+        <NamedIndividual IRI="CreativeCommons"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="dcmi:license"/>
+        <AnonymousIndividual nodeID="_:http://www.semanticweb.org/sudha/ontologies/2014/6/try1#genid23141026786245"/>
+        <NamedIndividual IRI="RadLex®"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="ontologyLanguage"/>
+        <AnonymousIndividual nodeID="_:http://www.semanticweb.org/sudha/ontologies/2014/6/try1#genid23788545823944"/>
+        <NamedIndividual IRI="OWL"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="ontologyLanguage"/>
+        <AnonymousIndividual nodeID="_:http://www.semanticweb.org/sudha/ontologies/2014/6/try1#genid23819021505799"/>
+        <NamedIndividual IRI="DAML"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="ontologyLanguage"/>
+        <AnonymousIndividual nodeID="_:http://www.semanticweb.org/sudha/ontologies/2014/6/try1#genid23879398750191"/>
+        <NamedIndividual IRI="OWL"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="ontologyLanguage"/>
+        <AnonymousIndividual nodeID="_:http://www.semanticweb.org/sudha/ontologies/2014/6/try1#genid23902519724482"/>
+        <NamedIndividual IRI="OIL"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="Acronym"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid48898451378670"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ABCD</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="Acronym"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid49249890950796"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DDI</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="Acronym"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid49676704600784"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">DIF</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="Acronym"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid50019844529857"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">OAI - ORE</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="Acronym"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid50183851694435"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">SDMX</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="Acronym"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid50662280707426"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">QuDEx</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="Acronym"/>
+        <AnonymousIndividual nodeID="_:http://drtc.isibang.ac.in/OntoLibVoc#genid53369027240277"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">N3</Literal>
+    </DataPropertyAssertion>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="dc:contributer"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="dc:creator"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="dc:format"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="dc:subject"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="dc:type"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="dcmi:license"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="endorsedBy"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="evaluatedBy"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="formalityLevel"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="knowledgeRepresentationFormalism"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="methodologyUsed"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="module"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="ontologyInUse"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="ontologyLanguage"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="sourceOntology"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="sponseredBy"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="syntax"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="toolUsed"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="dc:contributer"/>
+        <Class abbreviatedIRI="foaf:Agent"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="dc:creator"/>
+        <Class abbreviatedIRI="foaf:Agent"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="dc:format"/>
+        <Class IRI="FileFormat"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="dc:subject"/>
+        <Class IRI="Domain"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="dc:type"/>
+        <Class IRI="OntologyType"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="dcmi:license"/>
+        <Class IRI="License"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="endorsedBy"/>
+        <Class abbreviatedIRI="foaf:Agent"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="evaluatedBy"/>
+        <Class abbreviatedIRI="foaf:Agent"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="formalityLevel"/>
+        <Class IRI="LevelOfFormality"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="knowledgeRepresentationFormalism"/>
+        <Class IRI="KnowledgeRepresentationFormalism"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="methodologyUsed"/>
+        <Class IRI="OntologyDesignMethodology"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="module"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="ontologyInUse"/>
+        <Class abbreviatedIRI="foaf:Project"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="ontologyLanguage"/>
+        <Class IRI="OntologyDesignLanguage"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="sourceOntology"/>
+        <Class IRI="Ontology"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="sponseredBy"/>
+        <Class abbreviatedIRI="foaf:Project"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="syntax"/>
+        <Class IRI="OntologySyntax"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="toolUsed"/>
+        <Class IRI="OntologyDesignTool"/>
+    </ObjectPropertyRange>
+    <SubDataPropertyOf>
+        <DataProperty IRI="country"/>
+        <DataProperty IRI="address"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="pin"/>
+        <DataProperty IRI="address"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="state"/>
+        <DataProperty IRI="address"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="street"/>
+        <DataProperty IRI="address"/>
+    </SubDataPropertyOf>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="dc:description"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="dc:identifier"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="dc:language"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="Acronym"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="accessibility"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="address"/>
+        <Class abbreviatedIRI="foaf:Agent"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="classes"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="competencyQuestion"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="creationDate"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="document"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="homepage"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="individuals"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="keyword"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="numberOfAxioms"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="properties"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="size"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="status"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="version"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="vocabularyUsed"/>
+        <Class IRI="Ontology"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="skos:altLabel"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="foaf:firstName"/>
+        <Class abbreviatedIRI="foaf:Person"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="foaf:lastName"/>
+        <Class abbreviatedIRI="foaf:Person"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="foaf:mbox"/>
+        <Class abbreviatedIRI="foaf:Agent"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="foaf:name"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="foaf:phone"/>
+        <Class abbreviatedIRI="foaf:Agent"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="dc:description"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="dc:identifier"/>
+        <Datatype abbreviatedIRI="xsd:anyURI"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="dc:language"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="Acronym"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="accessibility"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="address"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="classes"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="competencyQuestion"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="creationDate"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="document"/>
+        <Datatype abbreviatedIRI="xsd:anyURI"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="homepage"/>
+        <Datatype abbreviatedIRI="xsd:anyURI"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="individuals"/>
+        <Datatype abbreviatedIRI="xsd:positiveInteger"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="keyword"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="numberOfAxioms"/>
+        <Datatype abbreviatedIRI="xsd:positiveInteger"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="properties"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="size"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="status"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="version"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="vocabularyUsed"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="skos:altLabel"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="foaf:firstName"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="foaf:lastName"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="foaf:mbox"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="foaf:name"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="foaf:phone"/>
+        <Datatype abbreviatedIRI="xsd:long"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>dc:contributer</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">An agent who has contributed in making an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>dc:creator</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The creator of an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>dc:description</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A statement that represents something in words. It is the act of describing something. The description can include, for instance, the purpose of a thing, the scope, the area of applications of a thing, the history, etc. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>dc:format</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The file format of an ontological resource. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>dc:identifier</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">An unambiguous reference to the resource within a given context.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>dc:language</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The natural language of an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>dc:subject</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The subject or the topic of an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>dc:type</AbbreviatedIRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The nature or genre of the resource.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>dcmi:license</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A license under which an ontology is published. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>Acronym</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A word formed from the initial letters of the several words in the name and pronounced as one word.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Acronym</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Acronym</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>DAML</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Darpa Agent Markup Language </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>DescriptionLogics</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Description Logics</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>Domain</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">An area of knowledge or a flield of study that an ontology deals with. For example, Gene ontology, Movie onotology, Fishery ontology and Food ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Domain</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Domain</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>DomainOntology</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Domain Ontology </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>FileFormat</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A file format of an ontology. For example .rdf, .owl, .xml, etc.  </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>FileFormat</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">File Format</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>FirstOrderLogic</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">First Order Logic </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>Formal</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">All the terms are defined formally, with established theorems and proofs.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Formal</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Formal</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>GNUFreeDocumentationLicense</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">GNU Free Documentation License </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>GNUGeneralPublicLicense</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">GNU General Public License </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>GeneralOntology</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">General Ontology</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>GeneralOntology</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Top-Level Ontology</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>GeneralOntology</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Upper Level Ontology</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>KnowledgeRepresentationFormalism</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A representation formalism that is followed to describe knowledge in an ontology. Example includes description logics, first order logic, etc. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>KnowledgeRepresentationFormalism</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Knowledge Representation Formalism</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>LevelOfFormality</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The degree or level of formality of an ontology. The level of formality varies from Rigorously formal, Semiformal, Informal, and Semiinformal. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>LevelOfFormality</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Level Of Formality</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>License</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A legal document giving official permission to do something with an ontology. Example includes Apache license, Creative Commons Attribution License, GNU General Public License and GPL. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>License</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">License</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>OIL</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Ontology Interchange Language </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>OWL</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Web Ontology Language</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>Ontology</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A rigorous and exhaustive organization of some knowledge domain that is usually hierarchical and contains all the relevant entities and their relations. 
+According to Studer et al., (1998), it is &quot;a formal, explicit specification of a shared conceptualization.&quot; </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Ontology</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Ontology</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>OntologyDesignLanguage</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A knowledge representation language using which an ontology is written. For example, RDFS, OWL, Ontolingua and Loom. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>OntologyDesignLanguage</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Ontology Design Language</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>OntologyDesignMethodology</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A method(s) by which an ontology is created. Example includes Methontology, Tove, Cyc and YAMO. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>OntologyDesignMethodology</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Ontology Design Methodology</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>OntologyDesignTool</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A tool that is used to create an ontology. Example includes Protege, OntoEdit, TopBraid, etc. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>OntologyDesignTool</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Ontology Design Tool</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>OntologySyntax</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A syntax that is used to implement an ontology. Example includes RDF/XML, Notation3, n-triples, RDFa and Turtle. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>OntologySyntax</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Ontology Syntax</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>OntologyType</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The kind of an ontology. Example includes Upper ontology, Domain Ontology, Application Ontology and Task ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>OntologyType</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Ontology Type</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>PropositionalLogics</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Propositional Logic </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>UscholdAndKingsMethod</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Uschold And King&apos;s Method </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>accessibility</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Information on access (i.e., read, download) to an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>address</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The address of an agent. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>classes</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The total number of classes in an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>competencyQuestion</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A set of questions made to build an ontology at the design time. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>country</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The country name. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>creationDate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The release date of an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>document</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A link to the documentation page on a thing. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>endorsedBy</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">An ontology endorsed by an agent. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>endorsedBy</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">endorsed by</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>evaluatedBy</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">An ontology that is evaluated by an agent. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>evaluatedBy</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">evaluated by</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>formalityLevel</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The level of formality of an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>formalityLevel</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">formality level</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>homepage</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Link to the homepage of a thing. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>individuals</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The total number of individuals in an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>keyword</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A keyword(s) is used to describe the content of an ontology. Keywords are basically uncontrolled and author defined words. Multiple entries in a keywords list are typically delimited by commas. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>knowledgeRepresentationFormalism</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A knowledge representation formalism (e.g., description logics, first order logic) followed to create an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>knowledgeRepresentationFormalism</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">knowledge representation formalism</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>methodologyUsed</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A methodolgy follwoing which an ontology is created. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>methodologyUsed</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">methodology used</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>module</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The part(s) of the ontology, may refer to the same ontology or may be to different ontologies.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>module</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">module</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>numberOfAxioms</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The total number of axioms in an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>numberOfAxioms</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">number of axioms</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>ontologyInUse</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">An ontology that is used in a project. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ontologyInUse</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ontology in use</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>ontologyLanguage</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A language that is used to create an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ontologyLanguage</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ontology design language</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>pin</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A pin code. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>properties</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The total number of properties in an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>size</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The size of the ontology.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>sourceOntology</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The ontology(ies) referred to while creating the present ontology.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>sourceOntology</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">source ontology</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>sponseredBy</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">An ontology that is sponsored by and developed under a project. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>sponseredBy</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">sponsered by</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>state</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The state or the province name. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>status</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The status of an released ontology (i.e. whether completed or an intermediated version,  authorized or not, etc.) </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>street</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The street address. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>syntax</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The syntax followed in the creation of an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>syntax</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">syntax </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>toolUsed</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The tool used for the creation of an ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>toolUsed</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">tool used</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>version</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The version of the released ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>vocabularyUsed</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A vocabulary(ies) that is used and/or referred to create the current ontology. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>vocabularyUsed</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">vocabulary used </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>skos:altLabel</AbbreviatedIRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The alternative name for the specified thing.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>skos:altLabel</AbbreviatedIRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Alt Label</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>foaf:Agent</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A resource that acts or has the power to act. Example of Agents include person and organization. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>foaf:Organisation</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">An agent corresponding to social institutions such as companies, associations, etc., that has a collective goal. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>foaf:Person</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A human being (alive, dead, undead, real or imaginary). </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>foaf:Project</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Any piece of work that is undertaken or attempted. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>foaf:firstName</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The first name of a person.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>foaf:lastName</AbbreviatedIRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The last name of a person.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>foaf:mbox</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The email address of an agent. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>foaf:name</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The name for some thing. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <AbbreviatedIRI>foaf:phone</AbbreviatedIRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral"> A phone, specified using fully qualified telelephone number.</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
